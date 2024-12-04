@@ -1,3 +1,6 @@
+# All store inventory at once in master inventory
+
+
 import glob
 import pandas as pd
 import os

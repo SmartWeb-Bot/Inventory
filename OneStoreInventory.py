@@ -1,3 +1,6 @@
+#  one store inventory like NW, KC, SP, JM  individually
+
+
 import glob
 import pandas as pd
 import os
