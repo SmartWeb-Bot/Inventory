@@ -74,9 +74,9 @@ country_mapping_list = {
 # Mapping for sheet names based on folder names
 sheet_name_mapping = {
     "KC": "KC Product Sales",
-    "NW": "North West Product Sales",
-    "JM": "J M LIMITED",
-    "SP": "Spetra Product Sales"
+    "NW": "NW Product Sales",
+    "JM": "JM Product Sales",
+    "SP": "SP Product Sales"
 }
 
 # Process each folder
