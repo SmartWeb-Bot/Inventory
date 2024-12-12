@@ -79,6 +79,40 @@ sheet_name_mapping = {
     "SP": "SP Product Sales"
 }
 
+# Get yesterday's date in the required format (e.g., "11 DEC 2024")
+yesterday = datetime.today() - timedelta(days=1)
+yesterday_str = yesterday.strftime("%d %b %Y").upper()  # Format as "11 DEC 2024"
+
+# Get the day of the week (e.g., "Monday")
+day_of_week = yesterday.strftime("%A").upper()  # Full weekday name (e.g., "MONDAY")
+
+# Load the workbook and iterate over each sheet to add the yesterday's date in the first row, second column
+if os.path.exists(file_path):
+    try:
+        # Load the Excel workbook
+        workbook = load_workbook(file_path)
+        
+        # Iterate over all sheets in the workbook
+        for sheet_name in workbook.sheetnames:
+            sheet = workbook[sheet_name]
+            
+            # Add yesterday's date in the first row and second column
+            sheet.cell(row=1, column=2).value = yesterday_str
+
+            # Add day of the week in the second row and second column
+            sheet.cell(row=2, column=2).value = day_of_week
+        
+        # Save the changes to the Excel file
+        workbook.save(file_path)
+        print(f"Yesterday's date ({yesterday_str}) and the day of the week ({day_of_week}) added to each sheet.")
+    
+    except Exception as e:
+        print(f"Error processing the Excel file: {e}")
+else:
+    print(f"The file '{file_path}' does not exist.")
+
+
+
 # Process each folder
 for folder_path in folder_paths:
     print(f"Processing folder: {folder_path}")
@@ -101,6 +135,7 @@ for folder_path in folder_paths:
         print(f"Error loading Excel file: {e}")
         continue
 
+   
     # Read CSV files in the folder
     data_by_country = {}
     files = os.listdir(folder_path)
